@@ -1,6 +1,5 @@
 package com.yworks.graph;
 
-import com.google.common.graph.Network;
 
 import java.util.Iterator;
 import java.util.Set;
@@ -28,7 +27,7 @@ public class Node {
 
     /**
      * Returns the first outgoing edge for this node, if any.
-     * @return {com.google.common.graph.Network.Edge|null}
+     * @return {Edge|null}
      */
     public Edge firstOutEdge() {
         Iterator<Edge> outEdgesIterator = this.network.outEdges(this).iterator();

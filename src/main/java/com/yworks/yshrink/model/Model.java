@@ -1,15 +1,13 @@
 package com.yworks.yshrink.model;
 
-import com.google.common.graph.Network;
-import com.google.common.graph.NetworkBuilder;
-import com.yworks.yshrink.core.ClassResolver;
 import com.yworks.logging.Logger;
+import com.yworks.yshrink.core.ClassResolver;
 import com.yworks.yshrink.util.Util;
 import com.yworks.graph.Node;
 import com.yworks.graph.Edge;
+import com.yworks.graph.Network;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
-import com.google.common.graph.MutableNetwork;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -30,7 +28,7 @@ public class Model {
 
   Map<String, ClassDescriptor> model;
 
-  protected MutableNetwork<Node, Edge> network;
+  protected Network<Node, Edge> network;
   private Map<Object, Object> dependencyTypes;
   protected Map<Object, Object> node2Descriptor;
   protected Map<Object, Object> node2Type;
@@ -76,15 +74,11 @@ public class Model {
     this( null );
   }
 
-  public Model( MutableNetwork<Node, Edge> network ) {
+  public Model( Network<Node, Edge> network ) {
     if ( network != null ) {
       this.network = network;
     } else {
-      this.network = NetworkBuilder
-              .directed()
-              .allowsParallelEdges(true)
-              .allowsSelfLoops(true)
-              .build();
+      this.network = new Network<>();
     }
 
     setClassResolver( null );
